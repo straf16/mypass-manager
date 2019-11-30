@@ -2,10 +2,11 @@ const { Site } = require('../models')
 
 class SiteController {
   static create(req, res, next) {
-    const { URL, username, password } = req.body
+    const { URL, name, username, password } = req.body
     Site
       .create({
         URL,
+        name,
         username,
         password
       })
@@ -41,6 +42,20 @@ class SiteController {
             message: 'Not Found'
           })
         }
+      })
+      .catch(next)
+  }
+  static updateById(req, res, next) {
+    const { URL, name, username, password } = req.body
+    Site
+      .findByIdAndUpdate(req.params.id, {
+        URL,
+        name,
+        username,
+        password
+      }, { new: true })
+      .then(result => {
+        res.status(200).json(result)
       })
       .catch(next)
   }
