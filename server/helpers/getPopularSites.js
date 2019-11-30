@@ -13,7 +13,7 @@ let popularSites = [
   },
   {
     name: 'Twitter',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Twitter_logo.svg/800px-Twitter_logo.svg.png'
+    img: 'https://www.dsmhomesales.com/wp-content/uploads/2014/02/twitter_logo.jpg'
   }
 ]
 

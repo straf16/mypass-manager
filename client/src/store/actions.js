@@ -16,6 +16,22 @@ export const addPassword = payload => {
   })
 }
 
+export const updatePassword = (id, payload) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'PATCH',
+      url: `/sites/${id}`,
+      data: payload
+    })
+      .then(({ data }) => {
+        resolve(data)
+      })
+      .catch(({ response }) => {
+        reject(response.data)
+      })
+  })
+}
+
 export const removePassword = payload => {
   return new Promise((resolve, reject) => {
     axios({

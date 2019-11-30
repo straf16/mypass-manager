@@ -93,12 +93,12 @@ function Main(props) {
               defaultSelectedKeys={['2']}
               style={{ lineHeight: '64px', paddingLeft: 30, background: '#D12F2E' }}
             >
-              <Icon
+              {/* <Icon
                 className="trigger"
                 type={collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={toggle}
                 style={{ margin: 20 }}
-              />
+              /> */}
               <Menu.Item disabled>
                 <strong style={{ fontSize: 20, color: 'white' }}>Password Manager</strong>
               </Menu.Item>

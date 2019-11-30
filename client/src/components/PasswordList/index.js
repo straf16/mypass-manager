@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchPasswordList, removePassword } from '../../store/actions';
 
+import FormAdd from '../FormAdd';
+
 import './passwordlist.css'
 import 'antd/dist/antd.css';
 
-import { Card, Icon, Popconfirm } from 'antd';
+import { Card, Icon, Popconfirm, Modal } from 'antd';
 
 function PasswordList(props) {
+  const [visible, setVisible] = useState(false)
+  const [payload, setPayload] = useState({})
   const ListPassword = useSelector(state => state.password.listPassword)
   const Toast = useSelector(state => state.feedback.Toast)
   const dispatch = useDispatch()
@@ -34,6 +38,16 @@ function PasswordList(props) {
       })
   }
 
+  const showModal = (site) => {
+    setPayload(site)
+    setVisible(true)
+  }
+
+  const handleCancel = () => {
+    setPayload({})
+    setVisible(false)
+  }
+
   useEffect(() => {
     dispatch(fetchPasswordList())
   }, [ dispatch ])
@@ -54,7 +68,7 @@ function PasswordList(props) {
                 />
               }
               actions={[
-                <Icon type="setting" key="setting" />,
+                <Icon type="setting" key="edit" onClick={() => showModal(site)}/>,
                 <Icon type="team" key="share" />,
                 <Popconfirm
                   title="Delete this site?"
@@ -70,12 +84,27 @@ function PasswordList(props) {
               ]}
             >
               <Meta
-                title={site.URL}
+                title={site.name}
                 description={site.username}
               />
             </Card>
           ))
         }
+      </div>
+      <div>
+        <Modal
+          visible={visible}
+          title="Title"
+          onCancel={handleCancel}
+          footer={null}
+        >
+          <FormAdd
+            payload={payload}
+            submit={() => {
+              dispatch(fetchPasswordList())
+              setVisible(false)
+            }}/>
+        </Modal>
       </div>
     </div>
   )
