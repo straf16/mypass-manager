@@ -8,9 +8,9 @@ import {
 import Main from './index';
 import store from '../../store'
 
-describe('Testing: Main component', () => {
+describe('Testing: Main container', () => {
   test('render without crash', () => {
-    const { debug, queryByTestId } = render(
+    const { queryByTestId } = render(
       <Provider store={store}>
         <Router>
           <Main />
@@ -19,11 +19,12 @@ describe('Testing: Main component', () => {
     )
 
     expect(queryByTestId('main-container')).toBeInTheDocument()
+    expect(queryByTestId('sidebar')).toBeInTheDocument()
+    expect(queryByTestId('navbar')).toBeInTheDocument()
     fireEvent.click(queryByTestId('link-to-my-password'))
     expect(queryByTestId('password-list-section')).toBeInTheDocument()
     fireEvent.click(queryByTestId('link-to-form-add'))
     expect(queryByTestId('form-add-section')).toBeInTheDocument()
-    
-    debug()
+
   })
 })
