@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Link,
   useLocation
 } from 'react-router-dom'
 
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, Menu } from 'antd'
+import { LockFilled, FormOutlined } from '@ant-design/icons';
 
 function Sidebar(props) {
   const { Sider } = Layout
@@ -33,7 +34,7 @@ function Sidebar(props) {
   }
   
   return (
-    <>
+    <div>
       <Sider
         data-testid="sidebar"
         trigger={null}
@@ -60,19 +61,19 @@ function Sidebar(props) {
           <div className="logo" />
           <Menu.Item key="my-password">
             <Link data-testid="link-to-my-password" to="/main/my-password">
-              <Icon type="lock" />
+              <LockFilled />
               <span>Passwords</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="form-add">
             <Link data-testid="link-to-form-add" to="/main/form-add">
-              <Icon type="form" />
+              <FormOutlined />
               <span>Add Password</span>
             </Link>
           </Menu.Item>
         </Menu>
       </Sider>
-    </>
+    </div>
   )
 }
 

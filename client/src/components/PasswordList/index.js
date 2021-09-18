@@ -8,7 +8,8 @@ import FormAdd from '../FormAdd';
 import './passwordlist.css'
 import 'antd/dist/antd.css';
 
-import { Card, Icon, Popconfirm, Modal } from 'antd';
+import { Card, Popconfirm, Modal } from 'antd';
+import { SettingFilled, TeamOutlined, DeleteFilled } from '@ant-design/icons';
 
 function PasswordList(props) {
   const [visible, setVisible] = useState(false)
@@ -68,18 +69,15 @@ function PasswordList(props) {
                 />
               }
               actions={[
-                <Icon type="setting" key="edit" onClick={() => showModal(site)}/>,
-                <Icon type="team" key="share" />,
+                <SettingFilled key="edit" onClick={() => showModal(site)} />,
+                <TeamOutlined key="share" />,
                 <Popconfirm
                   title="Delete this site?"
                   onConfirm={() => remove(site._id)}
                   okText="Yes"
                   cancelText="No"
                 >
-                  <Icon
-                    type="delete"
-                    key="delete"
-                  />
+                  <DeleteFilled key="delete" />
                 </Popconfirm>,
               ]}
             >
