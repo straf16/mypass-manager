@@ -34,7 +34,7 @@ function Sidebar(props) {
   }
   
   return (
-    <div>
+    <React.Fragment>
       <Sider
         data-testid="sidebar"
         trigger={null}
@@ -73,7 +73,7 @@ function Sidebar(props) {
           </Menu.Item>
         </Menu>
       </Sider>
-    </div>
+    </React.Fragment>
   )
 }
 
