@@ -2,10 +2,12 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 import Main from './containers/Main'
+import Onboarding from './containers/Onboarding/onboarding';
 
 import './App.css';
 
@@ -29,6 +31,12 @@ function App() {
         </header>
       </div> */}
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/onboarding/login"/>
+        </Route>
+        <Route path="/onboarding/:state">
+          <Onboarding />
+        </Route>
         <Route path="/main">
           <Main />
         </Route>

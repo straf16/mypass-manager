@@ -14,7 +14,7 @@ function Navbar(props) {
         defaultSelectedKeys={['2']}
         style={{ lineHeight: '64px', paddingLeft: 30, background: '#D12F2E' }}
       >
-        <Menu.Item disabled>
+        <Menu.Item key="title" disabled>
           <strong data-testid="title" style={{ fontSize: 20, color: 'white' }}>Password Manager</strong>
         </Menu.Item>
       </Menu>

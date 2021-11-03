@@ -1,0 +1,14 @@
+.onboarding-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fafafa;
+    height: calc(100vh - 66px);
+    width: 100vw;
+}
+
+.onboarding-card {
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 10px 2px;
+    width: 400px;
+}
