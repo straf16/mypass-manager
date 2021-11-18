@@ -8,7 +8,8 @@ class SiteController {
         URL,
         name,
         username,
-        password
+        password,
+        owner: req.loggedUser._id
       })
       .then(result => {
         res.status(201).json(result)
@@ -17,7 +18,10 @@ class SiteController {
   }
   static read(req, res, next) {
     Site
-      .find()
+      .find({
+        owner: req.loggedUser._id
+      })
+      .populate('owner')
       .then(result => {
         if (result.length > 0) {
           res.status(200).json(result)
@@ -33,6 +37,7 @@ class SiteController {
   static readById(req, res, next) {
     Site
       .findById(req.params.id)
+      .populate('owner')
       .then(result => {
         if (result) {
           res.status(200).json(result)
@@ -53,9 +58,9 @@ class SiteController {
         name,
         username,
         password
-      }, { new: true })
+      }, { new: true, runValidators: true })
       .then(result => {
-        res.status(200).json(result)
+        res.status(201).json(result)
       })
       .catch(next)
   }

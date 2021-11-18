@@ -18,7 +18,13 @@ const siteSchema = new Schema({
     type: String,
     required: [true, 'Password is required']
   },
-  img: String
+  img: {
+    type: String
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 }, {
   versionKey: false,
   timestamps: true
