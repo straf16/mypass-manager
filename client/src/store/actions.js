@@ -1,5 +1,21 @@
 import axios from '../config/axios'
 
+export const login = payload => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'POST',
+      url: '/login',
+      data: payload
+    })
+      .then(({ data }) => {
+        resolve(data)
+      })
+      .catch(({ response }) => {
+        reject(response.data)
+      })
+  })
+}
+
 export const addPassword = payload => {
   return new Promise((resolve, reject) => {
     axios({
