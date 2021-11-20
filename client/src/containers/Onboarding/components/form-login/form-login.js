@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { login } from '../../../../store/actions';
 
 import { Button, Card, Divider, Form, Input } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
-import { login } from '../../../../store/actions';
 
 function FormLogin(props) {
     const [email, setEmail] = useState('');
