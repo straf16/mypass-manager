@@ -37,7 +37,10 @@ export const addPassword = payload => {
     axios({
       method: 'POST',
       url: '/sites',
-      data: payload
+      data: payload,
+      headers: {
+        token: localStorage.getItem('token')
+      }
     })
       .then(({ data }) => {
         resolve(data)
@@ -53,7 +56,10 @@ export const updatePassword = (id, payload) => {
     axios({
       method: 'PATCH',
       url: `/sites/${id}`,
-      data: payload
+      data: payload,
+      headers: {
+        token: localStorage.getItem('token')
+      }
     })
       .then(({ data }) => {
         resolve(data)
@@ -68,7 +74,10 @@ export const removePassword = payload => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'DELETE',
-      url: `/sites/${payload.id}`
+      url: `/sites/${payload.id}`,
+      headers: {
+        token: localStorage.getItem('token')
+      }
     })
       .then(({ data }) => {
         resolve(data)
@@ -80,7 +89,13 @@ export const removePassword = payload => {
 }
 
 export const fetchPasswordList = () => async dispatch => {
-    const { data } = await axios({ method: 'GET', url: '/sites' })
+    const { data } = await axios({
+      method: 'GET',
+      url: '/sites',
+      headers: {
+        token: localStorage.getItem('token')
+      }
+    })
     dispatch({
       type: 'FETCH_LIST_PASSWORD',
       payload: data

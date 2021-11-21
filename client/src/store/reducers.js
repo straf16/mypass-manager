@@ -19,6 +19,22 @@ function feedback(state = initFeedback, action) {
   return state
 }
 
+const initUser = {
+  isLogin: false
+}
+
+function user(state = initUser, action) {
+  switch (action.type) {
+    case 'SET_LOGIN':
+      return {
+        ...state,
+        isLogin: action.payload
+      }
+    default:
+      return state
+  }
+}
+
 const initPassword = {
   listPassword: []
 }
@@ -35,6 +51,6 @@ function password(state = initPassword, action) {
   }
 }
 
-const rootReducers = combineReducers({ feedback, password })
+const rootReducers = combineReducers({ feedback, user, password })
 
 export default rootReducers
