@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 import Main from './containers/Main'
 import Onboarding from './containers/Onboarding/onboarding';
@@ -12,24 +13,24 @@ import Onboarding from './containers/Onboarding/onboarding';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch({
+        type: 'SET_LOGIN',
+        payload: true
+      })
+    } else {
+      dispatch({
+        type: 'SET_LOGIN',
+        payload: false
+      })
+    }
+  }, [])
+
   return (
     <Router>
-      {/* <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div> */}
       <Switch>
         <Route exact path="/">
           <Redirect to="/onboarding/login"/>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../../../store/actions';
 
 import { Button, Card, Divider, Form, Input } from 'antd';
@@ -10,6 +10,7 @@ function FormLogin(props) {
     const [password, setPassword] = useState('');
     const Toast = useSelector(state => state.feedback.Toast)
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const handleSubmit = (values) => {
         login({ email, password })
@@ -17,6 +18,10 @@ function FormLogin(props) {
                 localStorage.setItem('token', result.token)
                 localStorage.setItem('name', result.name)
                 localStorage.setItem('email', result.email)
+                dispatch({
+                    type: 'SET_LOGIN',
+                    payload: true
+                })
                 setEmail('')
                 setPassword('')
                 Toast.fire({

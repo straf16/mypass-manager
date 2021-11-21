@@ -14,6 +14,7 @@ function Sidebar(props) {
   const [side, setSide] = useState(null)
 
   useEffect(() => {
+    // selected side not change after submit the new password site
     switch (location.pathname) {
       case '/main/form-add':
         setSide('form-add')
@@ -25,7 +26,7 @@ function Sidebar(props) {
         setSide('my-password')
         break;
     }
-  }, [location.pathname])
+  }, [location])
 
   if (!side) {
     return (
