@@ -98,7 +98,7 @@ function PasswordList(props) {
         >
           <FormAdd
             payload={payload}
-            submit={() => {
+            onSubmit={() => {
               dispatch(fetchPasswordList())
               setVisible(false)
             }}/>

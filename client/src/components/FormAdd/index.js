@@ -5,7 +5,7 @@ import { addPassword, updatePassword } from '../../store/actions'
 
 import { Form, AutoComplete, Input, Button, Progress } from 'antd';
 
-function FormAdd({payload, submit}) {
+function FormAdd({payload, onSubmit}) {
   const [URL, setURL] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
@@ -44,8 +44,7 @@ function FormAdd({payload, submit}) {
     },
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (values) => {
     if (!payload) {
       addPassword({
         URL,
@@ -62,7 +61,7 @@ function FormAdd({payload, submit}) {
             icon: 'success',
             title: 'Successfully add password'
           })
-          history.replace('/main/my-password')
+          history.push('/main/my-password')
         })
         .catch(({ message }) => {
           message.forEach(error => {
@@ -88,7 +87,7 @@ function FormAdd({payload, submit}) {
             icon: 'success',
             title: 'Successfully update password'
           })
-          submit()
+          onSubmit()
         })
         .catch(({ message }) => {
           message.forEach(error => {
@@ -161,7 +160,7 @@ function FormAdd({payload, submit}) {
 
   return (
     <div data-testid="form-add-section">
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
+      <Form {...formItemLayout} onFinish={handleSubmit}>
         <Form.Item label="URL Site">
           <AutoComplete
             value={URL}
@@ -173,7 +172,7 @@ function FormAdd({payload, submit}) {
             style={{ width: '60%' }}
           />
         </Form.Item>
-        <Form.Item label="Name">
+        <Form.Item label="Title">
           <Input style={{ width: '60%' }} value={name} onChange={e => setName(e.target.value)} />
         </Form.Item>
         <Form.Item label="Username">
