@@ -13,7 +13,7 @@ let popularSites = [
   },
   {
     name: 'Twitter',
-    img: 'https://www.dsmhomesales.com/wp-content/uploads/2014/02/twitter_logo.jpg'
+    img: 'https://www.dsmhomesales.com/wp-content/uploads/2014/02/twitter_logo.jpg' // link not working to get photo
   }
 ]
 
@@ -24,8 +24,8 @@ function getDetail(url) {
     return popularSites[1]
   } else if (url.match(/linkedin/gi)) {
     return popularSites[2]
-  } else if (url.match(/twitter/gi)) {
-    return popularSites[3]
+  } else {
+    return { img: '' }
   }
 }
 
