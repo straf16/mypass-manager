@@ -11,6 +11,8 @@ import Main from './containers/Main'
 import Onboarding from './containers/Onboarding/onboarding';
 
 import './App.css';
+import PublicRoute from './components/PublicRoute/public-route';
+import PrivateRoute from './components/PrivateRoute/private-route';
 
 function App() {
   const dispatch = useDispatch()
@@ -35,12 +37,8 @@ function App() {
         <Route exact path="/">
           <Redirect to="/onboarding/login"/>
         </Route>
-        <Route path="/onboarding/:state">
-          <Onboarding />
-        </Route>
-        <Route path="/main">
-          <Main />
-        </Route>
+        <PublicRoute restricted={true} path="/onboarding/:state" exact component={Onboarding} />
+        <PrivateRoute path="/main" component={Main} />
       </Switch>
     </Router>
   );
