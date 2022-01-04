@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router
 } from 'react-router-dom'
+import '../../test/matchMedia.mock'
 import Main from './index';
 import store from '../../store'
 
